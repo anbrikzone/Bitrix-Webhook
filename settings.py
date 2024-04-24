@@ -1,6 +1,6 @@
-from dotenv import load_dotenv, dotenv_values
 import os
 from os.path import join, dirname
+from dotenv import load_dotenv
 
 # Получаем константы из .env
 dotenv_path = join(dirname(__file__), '.env')

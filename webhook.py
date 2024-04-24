@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 from models import names_man, names_woman
 
-# Выполняем batch запрос
+# Выполняем batch-запрос
 # params - словарь состоящий из команд на обновление контактов (результат работы функции generate_batch_urls)
 def batch_execute(params) -> dict:
     request = requests.post(f'https://{BITRIX_URL}/rest/1/{TOKEN}/batch.json/', json=params)
