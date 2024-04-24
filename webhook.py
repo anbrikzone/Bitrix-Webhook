@@ -39,11 +39,16 @@ def generate_batch_urls(genders) -> list:
 # names - словарь имен {1: 'Имя', ...}, где 1 - ID пользователя в системе Битрикс 
 def get_genders(names) -> list:
     gender = []
+    
+    # Проверяем какие имена являются мужскими согласно внутренней базе данных имен
+    # SELECT * FROM names_man WHERE name IN ('Имя', ...)
     qs_man = names_man.select().where(names_man.name.in_(list(names.values())))
     if len(qs_man) > 0:
         for query in qs_man:
+            # list(names.values()).index(query.name) - возвращаем ключ (Битрикс ID) по значению (Name)
             gender.append({'male': list(names.keys())[list(names.values()).index(query.name)]})
-
+    
+    # Делаем тоже самое для женских имен
     qs_woman = names_woman.select().where(names_woman.name.in_(list(names.values())))
     if len(qs_woman) > 0:
         for query in qs_woman:
