@@ -22,6 +22,7 @@ class names_woman(Model):
     class Meta:
         database = db
 
+# Подключаемся к БД, создаем таблицы, если они ещё не существуют, и наполняем их именами
 db.connect()
 if not db.table_exists([names_man, names_woman]):
     db.create_tables([names_man, names_woman])
